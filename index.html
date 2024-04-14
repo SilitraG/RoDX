@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>RoDX</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <section class="header">
+            <img src="e.jpg" alt="">
+            <nav>
+               <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="login.html">LOGIN</a></li>
+                    <li><a href="registration.html">REGISTER</a></li>
+                    <li><a href="abouta.html">ABOUT</a></li>
+                    <li><a href="helpa.html">HELP</a></li>
+
+                </ul>
+               </div>
+               <i class="fa fa-bars" onclick="showMenu()"></i>
+            </nav>
+
+    <div class="text-box">
+        <h1>Romanian Drug Explorer</h1>
+        <a href ="abouta.html" class="click">Click pentru mai multe detalii</a>
+    </div>        
+        </section>
+        <section class="detalii">
+            <h1>Statistici</h1>
+            <p>Mai jos puteti gasi statistici privind consumul de droguri din Romania din ultimii ani</p>
+            
+            <div class="row">
+                <div class="clasif">
+                    <ul>
+                        <li><a href="">LSD</a></li>
+                        
+                    </ul> 
+        
+                          <p>Statistici: x%</p>
+                          <p>...</p> 
+                </div>
+                <div class="clasif">
+                    <ul>
+                        <li><a href="">Cocaina</a></li>
+                    </ul>
+            
+                            <p>Statistici: x%</p>
+                            <p>...</p>
+                </div>
+                <div class="clasif">
+                    <ul>
+                        <li><a href="">Alcool</a></li>
+                    </ul>
+                        <p></p>
+                        <p>Statistici: x%</p>
+                        <p>...</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <script>
+            var navLinks= document.getElementById("navLinks");
+            function showMenu(){
+                navLinks.style.right="0";
+
+            }
+            function hideMenu(){
+                navLinks.style.right="-200px";
+            }
+        </script>
+
+    </body>
+</html>
