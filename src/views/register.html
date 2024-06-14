@@ -1,84 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-        <head>
-        <meta charset="utf-8">
-        <title>Formular de inregistrare</title>
-        <meta name="viewport" content="width=device-width, initial scale=1.0" >
-        <link rel="stylesheet" href="/static/css/register.css" >
-
-    </head>
-    <body>
-        <nav>
-            <div class="nav-links" id="navLinks">
-             <i class="fa fa-times" onclick="hideMenu()"></i>
-             <ul>
-                <li><a href="/">HOME</a></li>
-                <li><a href="/login">LOGIN</a></li>
-                <li><a href="/register">REGISTER</a></li>
-                <li><a href="/about">ABOUT</a></li>
-                <li><a href="/help">HELP</a></li>
-             </ul>
+<head>
+    <meta charset="utf-8">
+    <title>Formular de inregistrare</title>
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <link rel="stylesheet" href="/static/css/register.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">HOME</a>
+        <a href="/login">LOGIN</a>
+        <a href="/register">REGISTER</a>
+        <a href="/about">ABOUT</a>
+    </div>
+    <div class="container">
+        <h1 class="form-title">Inregistrare</h1>
+        <div class="separator"></div>
+        <form id="registerForm">
+            <div class="main-user-info">
+                <div class="user-input-box">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter Full Name" required>
+                </div>
+                <div class="user-input-box">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter Username" required>
+                </div>
+                <div class="user-input-box">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                </div>
+                <div class="user-input-box">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number" required>
+                </div>
+                <div class="user-input-box">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                </div>
+                <div class="user-input-box">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                </div>
             </div>
-            <i class="fa fa-bars" onclick="showMenu()"></i>
-         </nav>
-        <div class="container">
-            <img src="d.jpg" alt="">
-            <h1 class="form-title">Inregistrare</h1>
-            <div class="separator"></div>
-            <form action="#">
-                <div class="main-user-info">
-                    <div class="user-input-box">
-                        <label for="fullName">Full Name</label>
-                        <input type="text"
-                                id="fullName"
-                                name="fullName"
-                                placeholder="Enter Full Name">
-                    </div>
-                    <div class="user-input-box">
-                        <label for="username">Username</label>
-                        <input type="text"
-                                id="username"
-                                name="username"
-                                placeholder="Enter Username">
-                    </div>
-                    <div class="user-input-box">
-                        <label for="email">Email</label>
-                        <input type="text"
-                                id="email"
-                                name="email"
-                                placeholder="Enter Email">
-                    </div>
-                    <div class="user-input-box">
-                        <label for="phoneNumber">Phone Number</label>
-                        <input type="text"
-                                id="phoneNumber"
-                                name="phoneNumber"
-                                placeholder="Enter Phone Number">
-                    </div>
-                    <div class="user-input-box">
-                        <label for="password">Password</label>
-                        <input type="text"
-                                id="password"
-                                name="password"
-                                placeholder="Enter Password">
-                    </div>
-                    <div class="user-input-box">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input type="text"
-                                id="confirmPassword"
-                                name="confirmPassword"
-                                placeholder="Confirm Password">
-                    </div>
-                </div>
-                <div class="form-submit-btn">
+            <div class="form-submit-btn">
                 <input type="submit" value="Register">
-                </div>
-                <p class="form-text">
-                    <a class="form-link" href="login.html" id="linkCreateAccount">Aveti deja cont? Conectati-va!</a>
-                </p>
-            </form>
-        </div>
-    </body>
+            </div>
+            <p class="form-text">
+                <a class="form-link" href="/login" id="linkCreateAccount">Aveti deja cont? Conectati-va!</a>
+            </p>
+        </form>
+    </div>
 
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
 
+            const fullName = document.getElementById('fullName').value;
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            const response = await fetch('/api/users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ fullName, username, email, phoneNumber, password, confirmPassword })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert('User registered successfully');
+                window.location.href = '/login';
+            } else {
+                alert(data.message);
+            }
+        });
+    </script>
+</body>
 </html>

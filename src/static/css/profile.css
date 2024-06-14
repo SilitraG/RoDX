@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #82c9d5;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #333;
+    overflow: hidden;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar a {
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.profile-container h1 {
+    margin-bottom: 20px;
+}
+
+#profile-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profile-form div {
+    margin-bottom: 15px;
+}
+
+#profile-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#profile-form input {
+    padding: 8px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#updateProfile, #deleteAccount {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#updateProfile {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#deleteAccount {
+    background-color: #f44336;
+    color: white;
+}

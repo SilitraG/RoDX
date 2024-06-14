@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/stats">Statistici</a>
+        <a href="/profile">Profil</a>
+        <a href="/index" id="logout">Logout</a>
+    </div>
+
+    <div class="content">
+        <h1>De ce nu este bine sa consumam droguri?!</h1>
+        <p>
+            Drogurile au un impact devastator asupra sănătății fizice și mentale. Consumul de droguri poate duce la dependență, care este o boală cronică ce afectează creierul și comportamentul. Drogurile pot provoca probleme severe de sănătate, inclusiv atacuri de cord, accidente vasculare cerebrale, insuficiență respiratorie și multe alte complicații grave. Pe lângă riscurile pentru sănătate, consumul de droguri poate afecta relațiile personale, poate duce la probleme legale și poate distruge cariere și vieți. Este important să conștientizăm aceste riscuri și să alegem să trăim o viață sănătoasă și echilibrată, fără influența nocivă a drogurilor.
+        </p>
+    </div>
+    <script>
+        document.getElementById('logout').addEventListener('click', function(event) {
+            event.preventDefault();
+            localStorage.removeItem('token');
+            window.location.href = '/';
+        });
+    </script>
+</body>
+</html>

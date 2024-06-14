@@ -8,37 +8,29 @@
     <title>Pagina de logare</title>
 </head>
 <body>
-    <nav>
-       <div class="nav-links" id="navLinks">
-        <i class="fa fa-times" onclick="hideMenu()"></i>
-        <ul>
-            <li><a href="/">HOME</a></li>
-                    <li><a href="/login">LOGIN</a></li>
-                    <li><a href="/register">REGISTER</a></li>
-                    <li><a href="/about">ABOUT</a></li>
-                    <li><a href="/help">HELP</a></li>
-        </ul>
-       </div>
-       <i class="fa fa-bars" onclick="showMenu()"></i>
-    </nav>
+    <div class="navbar">
+        <a href="/">HOME</a>
+        <a href="/login">LOGIN</a>
+        <a href="/register">REGISTER</a>
+        <a href="/about">ABOUT</a>
+    </div>
     <div class="header">
-        <img src="e.jpg" alt="">
     </div>  
     <div class="side">
         <div class="login-container">
             <p class="title">Bine ati venit!</p>
             <div class="separator"></div>
             <p class="welcome-message">Va rugam sa va conectati!</p>
-            <form class="login-form">
+            <form id="loginForm" class="login-form">
                 <div class="form-control">
-                    <input type="text" placeholder="Username">
+                    <input type="text" id="username" name="username" placeholder="Username" required>
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="form-control">
-                    <input type="password" placeholder="Password">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
                     <i class="fas fa-lock"></i>
                 </div>
-                <button class="submit">Login</button>
+                <button class="submit" type="submit">Login</button>
                 <p class="form-text">
                     <a href="#" class="form-link">Ati uitat parola?</a>
                 </p>
@@ -48,5 +40,31 @@
             </form>
         </div>
     </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                localStorage.setItem('token', data.token);
+                alert('User logged in successfully');
+                window.location.href = '/dashboard';
+            } else {
+                alert(data.message);
+            }
+        });
+    </script>
 </body>
 </html>
