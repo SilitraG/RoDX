@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/stats.css">
     <title>Statistici</title>
+    <style>
+        .small-chart {
+            width: 300px;
+            height: 300px;
+        }
+
+        .large-chart {
+            width: 800px;
+            height: 600px;
+        }
+        .error-message {
+            display: none;
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar">
@@ -16,65 +31,59 @@
     <div class="content">
         <h1>Statistici</h1>
         <form id="statsForm">
-            <label for="years">Selectați anul/an: </label>
-            <select id="years" name="years" multiple>
-                <option value="2020">2020</option>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
-                <option value="2023">2023</option>
-            </select>
-            <label for="categories">Selectați categoria: </label>
-            <select id="categories" name="categories">
-                <option value="infractiunile">Infracționalitatea la regimul drogurilor</option>
-                <option value="campanii">Proiectele și campaniile de prevenire</option>
-                <option value="confiscari">Situația confiscărilor de droguri</option>
-                <option value="urgente">Urgențe medicale</option>
-            </select>
-            <button type="submit">Caută</button>
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="years">Selectați anul: </label>
+                    <select id="years" name="years">
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="categories">Selectați categoria: </label>
+                    <select id="categories" name="categories">
+                        <option value="infractiunile">Infracționalitatea la regimul drogurilor</option>
+                        <option value="campanii">Proiectele și campaniile de prevenire</option>
+                        <option value="confiscari">Situația confiscărilor de droguri</option>
+                        <option value="urgente">Urgențe medicale</option>
+                    </select>
+                </div>
+                <div class="filter-group" id="subcategories-group" style="display:none;">
+                    <label for="subcategories">Selectați subcategoria: </label>
+                    <select id="subcategories" name="subcategories">
+                        <option value="persoane_cercetate">Persoane cercetate</option>
+                        <option value="persoane_condamnate">Persoane condamnate</option>
+                        <option value="situatia_gruparilor">Situația grupărilor infracționale</option>
+                        <option value="situatia_pedepselor">Situația pedepselor aplicate</option>
+                    </select>
+                </div>
+                <div class="filter-group" id="subcategories-condamnate-group" style="display:none;">
+                    <label for="subcategories-condamnate">Selectați detaliu: </label>
+                    <select id="subcategories-condamnate" name="subcategories-condamnate">
+                        <option value="incadrare_juridica">Încadrare juridică</option>
+                        <option value="incadrare_sexe">Încadrare pe sexe</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="representation">Selectați tipul de reprezentare: </label>
+                    <select id="representation" name="representation">
+                        <option value="bar">Bar Plot</option>
+                        <option value="line">Grafic</option>
+                        <option value="pie">Pie</option>
+                    </select>
+                </div>
+                <button type="submit">Caută</button>
+            </div>
         </form>
-        <canvas id="myChart"></canvas>
+        <div id="resultContainer">
+            <canvas id="myChart" class="large-chart"></canvas>
+            <div id="errorMessage" class="error-message">Categoria "Infracționalitatea la regimul drogurilor" nu este disponibilă pentru anul selectat.</div>
+        </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        document.getElementById('logout').addEventListener('click', function(event) {
-            event.preventDefault();
-            localStorage.removeItem('token');
-            window.location.href = '/';
-        });
-
-        let chartInstance = null;
-
-        document.getElementById('statsForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const years = Array.from(document.getElementById('years').selectedOptions).map(option => option.value);
-            const category = document.getElementById('categories').value;
-
-            try {
-                const response = await fetch(`/api/stats?years=${years.join(',')}&category=${category}`);
-                const data = await response.json();
-
-                const ctx = document.getElementById('myChart').getContext('2d');
-
-                if (chartInstance) {
-                    chartInstance.destroy();
-                }
-
-                chartInstance = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: data.map(d => d.year),
-                        datasets: [{
-                            label: category,
-                            data: data.map(d => d.value),
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        }]
-                    }
-                });
-            } catch (error) {
-                console.error('There was an error fetching the data:', error);
-            }
-        });
-    </script>
+    <script src="/static/js/infractionalitate.js"></script>
 </body>
 </html>
