@@ -66,6 +66,16 @@
                         <option value="incadrare_sexe">Încadrare pe sexe</option>
                     </select>
                 </div>
+                <div class="filter-group" id="subcategories-urgente" style="display:none;">
+                    <label for="subcategories">Selectați subcategoria: </label>
+                    <select id="subcategories" name="subcategories">
+                        <option value="gen">In functie de tipul drogului si sex</option>
+                        <option value="varsta">In functie de tipul drogului si si varsta</option>
+                        <option value="administrare">In functie de tipul drogului si calea de administrare</option>
+                        <option value="model_consum">In functie de tipul drogului si modelul de consum</option>
+                        <option value="diagnostic">In functie de tipul drogului si disgnosticul de urgenta</option>
+                    </select>
+                </div>
                 <div class="filter-group">
                     <label for="representation">Selectați tipul de reprezentare: </label>
                     <select id="representation" name="representation">
@@ -85,5 +95,6 @@
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/static/js/infractionalitate.js"></script>
+    <script src="/static/js/urgente.js"></script>
 </body>
 </html>
