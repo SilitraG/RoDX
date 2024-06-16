@@ -54,15 +54,18 @@ document.getElementById('statsForm').addEventListener('submit', async function(e
     const subcategoryCondamnate = document.getElementById('subcategories-condamnate').value;
     const representation = document.getElementById('representation').value;
     const errorMessage = document.getElementById('errorMessage');
+    const exportButtons = document.querySelector('.export-buttons');
     const canvas = document.getElementById('myChart');
 
     if ((year === "2020" || year === "2021") && (category === "infractiunile" || category === "confiscari")) {
         canvas.style.display = 'none';
         errorMessage.style.display = 'block';
+        exportButtons.style.display = 'none';
         return;
     } else {
         errorMessage.style.display = 'none';
         canvas.style.display = 'block';
+        exportButtons.style.display = 'block';
     }
 
     try {
@@ -267,4 +270,28 @@ document.getElementById('statsForm').addEventListener('submit', async function(e
     } catch (error) {
         console.error('There was an error fetching or processing the file:', error);
     }
+});
+
+document.getElementById('exportPNG').addEventListener('click', function() {
+    const canvas = document.getElementById('myChart');
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/png');
+    link.download = 'chart.png';
+    link.click();
+});
+
+document.getElementById('exportSVG').addEventListener('click', function() {
+    const canvas = document.getElementById('myChart');
+    const c2s = new C2S(canvas.width, canvas.height);
+    
+    chartInstance.options.animation = false; 
+    chartInstance.render({ duration: 0, lazy: false, context: c2s });
+    const svgData = new XMLSerializer().serializeToString(c2s.getSvg());
+
+    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const svgUrl = URL.createObjectURL(svgBlob);
+    const link = document.createElement('a');
+    link.href = svgUrl;
+    link.download = 'chart.svg';
+    link.click();
 });

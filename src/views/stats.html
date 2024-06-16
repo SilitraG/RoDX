@@ -19,12 +19,19 @@
             display: none;
             color: red;
         }
+        .export-buttons {
+            margin-top: 10px;
+        }
+        .export-buttons button {
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="navbar">
         <a href="/dashboard">Dashboard</a>
         <a href="/stats">Statistici</a>
+        <a href="/campanii">Campanii</a>
         <a href="/profile">Profil</a>
         <a href="/index" id="logout">Logout</a>
     </div>
@@ -97,10 +104,15 @@
             </div>
         </form>
         <div id="resultContainer">
+            <div class="export-buttons">
+                <button id="exportPNG">Export PNG</button>
+                <button id="exportSVG">Export SVG</button>
+            </div>
             <canvas id="myChart" class="large-chart"></canvas>
             <div id="errorMessage" class="error-message">Categoria "Infracționalitatea la regimul drogurilor" nu este disponibilă pentru anul selectat.</div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas2svg/1.0.18/canvas2svg.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/static/js/infractionalitate.js"></script>

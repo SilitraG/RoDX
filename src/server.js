@@ -64,13 +64,15 @@ const serveFile = (filePath, res) => {
 
 const routes = {
   '/': 'views/index.html',
+  '/index': 'views/index.html',
   '/about': 'views/about.html',
   '/login': 'views/login.html',
   '/register': 'views/register.html',
   '/help': 'views/help.html',
   '/dashboard': 'views/dashboard.html',
   '/stats': 'views/stats.html',
-  '/profile': 'views/profile.html'
+  '/profile': 'views/profile.html',
+  '/campanii': 'views/campanii.html'
 };
 
 const handleRequest = (req, res) => {

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/campanii.css">
+    <title>Campanii</title>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/stats">Statistici</a>
+        <a href="/campanii">Campanii</a>
+        <a href="/profile">Profil</a>
+        <a href="/index" id="logout">Logout</a>
+    </div>
+    <div class="campaigns-container">
+        <div class="campaign-card" data-id="1">
+            <img src="/static/images/campanie1.png" alt="Campaign 1">
+            <h3>CUM SĂ CREŞTEM SĂNĂTOŞI</h3>
+            <p>,,CUM SĂ CREŞTEM SĂNĂTOŞI” presupune formarea deprinderilor de viaţă sănătoasă în rândul copiilor de vârstă preşcolară şi şcolară mică.</p>
+            <button class="read-more">Read more</button>
+        </div>
+        <div class="campaign-card" data-id="2">
+            <img src="/static/images/campanie2.jpg" alt="Campaign 2">
+            <h3>ABC-UL EMOŢIILOR</h3>
+            <p>„ABC-UL EMOŢIILOR” este un proiect de formare şi consolidare a abilităţilor emoţionale cu rol de factori de protecţie în prevenirea consumului de droguri, punând accent pe conştientizarea de sine, pe abilităţile de comunicare asertivă</p>
+            <button class="read-more">Read more</button>
+        </div>
+        <div class="campaign-card" data-id="3">
+            <img src="/static/images/campanie3.jpg" alt="Campaign 3">
+            <h3>NECENZURAT</h3>
+            <p>Proiectul, care se desfăşoară în România, fără întrerupere, începând cu anul 2009, a fost implementat, în mai multe etape, în 17 state europene, dar şi în numeroase ţări din Asia, Africa şi America, şi a fost iniţiat de „Mentor International Foundation”</p>
+            <button class="read-more">Read more</button>
+        </div>
+        <div class="campaign-card" data-id="4">
+            <img src="/static/images/campanie4.jpg" alt="Campaign 4">
+            <h3>FRED GOES NET</h3>
+            <p>În cadrul proiectului ,,FRED GOES NET”, tinerii primesc informaţii corecte despre tipurile de droguri, efectele şi riscurile lor, sunt încurajaţi să reflecteze asupra comportamentului propriu de consum și să ia decizii pe baza evaluărilor proprii, dar şi pe baza conştientizării personale a riscurilor</p>
+            <button class="read-more">Read more</button>
+        </div>
+        <div class="campaign-card" data-id="5">
+            <img src="/static/images/campanie5.jpg" alt="Campaign 5">
+            <h3>MESAJUL MEU ANTIDROG</h3>
+            <p>Acesta este unul dintre proiectele de succes de prevenire a consumului de droguri în rândul populaţiei şcolare din învăţământul gimnazial şi liceal din toate judeţele ţării şi din Bucureşti şi se desfăşoară, anual.</p>
+            <button class="read-more">Read more</button>
+        </div>
+        <div class="campaign-card" data-id="6">
+            <img src="/static/images/campanie6.jpg" alt="Campaign 6">
+            <h3>EU ŞI COPILUL MEU</h3>
+            <p>Proiectul are ca obiectiv prevenirea consumului de droguri, inclusiv tutun, alcool şi substanţe noi psihoactive în rândul grupurilor vulnerabile, prin creşterea nivelului de sensibilizare şi responsabilizare a familiilor, în vederea oferirii de modele pozitive copiilor.</p>
+            <button class="read-more">Read more</button>
+        </div>
+    </div>
+    <div class="modal" id="campaign-modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 class="modal-title"></h2>
+            <p class="modal-description"></p>
+        </div>
+    </div>
+    <script src="/static/js/campanii.js"></script>
+</body>
+</html>
