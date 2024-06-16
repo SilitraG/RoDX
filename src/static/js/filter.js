@@ -280,18 +280,42 @@ document.getElementById('exportPNG').addEventListener('click', function() {
     link.click();
 });
 
+
 document.getElementById('exportSVG').addEventListener('click', function() {
     const canvas = document.getElementById('myChart');
-    const c2s = new C2S(canvas.width, canvas.height);
-    
-    chartInstance.options.animation = false; 
-    chartInstance.render({ duration: 0, lazy: false, context: c2s });
-    const svgData = new XMLSerializer().serializeToString(c2s.getSvg());
-
-    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const svgHtml = canvas.parentElement;
+    const svgData = new XMLSerializer().serializeToString(svgHtml);
+    const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
     const svgUrl = URL.createObjectURL(svgBlob);
     const link = document.createElement('a');
     link.href = svgUrl;
     link.download = 'chart.svg';
     link.click();
+});
+document.getElementById('exportCSV').addEventListener('click', function() {
+    const labels = chartInstance.data.labels;
+    const data = chartInstance.data.datasets[0].data;
+    const csvRows = [];
+    csvRows.push(['Label', 'Value']);
+
+    labels.forEach((label, index) => {
+        csvRows.push([label, data[index]]);
+    });
+
+    const csvString = csvRows.map(row => row.join(',')).join('\n');
+    const csvBlob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+    const csvUrl = URL.createObjectURL(csvBlob);
+    const link = document.createElement('a');
+    link.href = csvUrl;
+    link.download = 'chart.csv';
+    link.click();
+});
+
+document.getElementById('exportPDF').addEventListener('click', function() {
+    const canvas = document.getElementById('myChart');
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF();
+    
+    pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 15, 40, 180, 160);
+    pdf.save('chart.pdf');
 });

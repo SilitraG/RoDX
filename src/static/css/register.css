@@ -112,11 +112,11 @@ body::before {
     background: rgb(210, 212, 247);
     color: rgb(0, 0, 0);
     letter-spacing: 0.5px;
-    padding: 10px 50px; /* Mărit padding-ul */
+    padding: 10px 50px;
     border: none;
     outline: none;
     border-radius: 20px;
-    font-size: 1.2em; /* Mărit font-size-ul */
+    font-size: 1.2em;
 }
 
 .user-input-box input:focus ~ i {
@@ -132,7 +132,7 @@ body::before {
 
 .form-submit-btn input {
     color: aliceblue;
-    padding: 15px 50px; /* Mărit padding-ul */
+    padding: 15px 50px;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: bold;
@@ -141,7 +141,7 @@ body::before {
     transition: opacity 0.5s;
     border: none;
     border-radius: 20px;
-    font-size: 1.2em; /* Mărit font-size-ul */
+    font-size: 1.2em;
 }
 
 .form-submit-btn input:hover {
@@ -152,10 +152,11 @@ body::before {
     margin-top: 4%;
     font-size: 20px;
     text-align: center;
+    color: #333; 
 }
 
 .form-link {
-    color: rgb(121, 127, 243);
+    color: #0066cc;  
     text-decoration: none;
     cursor: pointer;
 }
@@ -167,7 +168,7 @@ body::before {
 @media (max-width: 600px) {
     .container {
         min-width: 280px;
-        margin-left: 0; /* Resetează margin-left pentru ecrane mici */
+        margin-left: 0; 
     }
     .main-user-info {
         max-height: 340px;

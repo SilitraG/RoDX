@@ -1,16 +1,38 @@
-*{
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.header{
+body {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
     min-height: 100vh;
-    width: 100%;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     background-image: url(/static/images/vaccine.jpg);
     background-size: cover;
-    
-    position: relative;
+    background-position: center;
+    background-attachment: fixed;
+    filter: blur(6px);
+    z-index: -1;
 }
+
+.header {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    z-index: 0;
+}
+
 .navbar {
     position: fixed;
     top: 0;
@@ -34,55 +56,63 @@
     color: black;
 }
 
-
-.text-box{
+.text-box {
     width: 90%;
     color: #fff;
     position: absolute;
     top: 50%;
-    left:55%;
-    transform: translate(-50%,-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
 }
-.text-box h1{
+
+.text-box h1 {
     font-size: 70px;
+    margin-bottom: 20px; 
 }
-.text-box p{
+
+.text-box p {
     margin: 10px 0 40px;
     font-size: 44px;
-    color:#fff;
+    color: #fff;
 }
-.click{
+
+.click {
     display: inline-block;
     text-decoration: none;
     color: #fff;
-    border: 1px solid #fff;
-    padding: 12px 34px;
-    font-size: 16px;
-    background: transparent;
-    position: relative;
-    cursor: pointer;
-
+    padding: 14px 38px;
+    font-size: 20px;
+    background: linear-gradient(to right, #8b33c5, #15a0e1);
+    border-radius: 0px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transition: background 0.5s, transform 0.5s;
+    margin-top: 20px; 
 }
-@media(max-width: 700px){
-    .text-box h1{
-        font-size:20px;
-    }
-    .nav-links ul li{
-        display: block;
 
+.click:hover {
+    background: linear-gradient(to right, #15a0e1, #8b33c5);
+    transform: scale(1.05);
+}
+
+@media(max-width: 700px) {
+    .text-box h1 {
+        font-size: 20px;
     }
-    .nav-links{
+    .nav-links ul li {
+        display: block;
+    }
+    .nav-links {
         position: absolute;
         background: #f44336;
         height: 100vh;
         width: 200px;
-        top:0;
-        right:0;
+        top: 0;
+        right: 0;
         text-align: left;
         z-index: 2;
     }
-    .nav fa{
+    .nav fa {
         display: block;
         color: #fff;
         margin: 10px;
@@ -90,72 +120,82 @@
         cursor: pointer;
     }
 }
-.detalii{
+
+.detalii {
     width: 80%;
     margin: auto;
     text-align: center;
     padding-top: 100px;
 }
-h1{
+
+h1 {
     font-size: 36px;
     font-weight: 600;
 }
-p{
+
+p {
     color: black;
     font-size: 18px;
     font-weight: 300;
     line-height: 22px;
     padding: 10px;
 }
-.row{
+
+.row {
     margin-top: 5%;
     display: flex;
     justify-content: space-between;
 }
-.clasif{
+
+.clasif {
     flex-basis: 31%;
-    background:rgb(181, 211, 243);
+    background: rgb(181, 211, 243);
     border-radius: 10px;
     margin-bottom: 5%;
     padding: 20px 12px;
     box-sizing: border-box;
     transition: 0.5s;
 }
-.clasif ul li{
+
+.clasif ul li {
     list-style: none;
     display: inline-block;
     padding: 8px 12px;
     position: relative;
-
 }
-.clasif li a{
+
+.clasif li a {
     color: blue;
     text-decoration: none;
     font-size: 23px;
 }
-.clasif li::after{
+
+.clasif li::after {
     content: '';
     width: 8%;
     height: 2px;
-    background: rgb(24, 43, 72) ;
+    background: rgb(24, 43, 72);
     display: block;
     margin: auto;
     transition: 0.5s;
 }
-.clasif li:hover::after{
+
+.clasif li:hover::after {
     width: 100%;
 }
-h3{
+
+h3 {
     text-align: center;
     font-weight: 800;
     margin: 10px 0;
 }
-.clasif:hover{
+
+.clasif:hover {
     box-shadow: 0 0 20px 0px blue;
 }
-@media(max-width: 700px){
-    .row{
+
+@media(max-width: 700px) {
+    .row {
         flex-direction: column;
-        
     }
 }
