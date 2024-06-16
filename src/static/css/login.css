@@ -1,20 +1,32 @@
-* {
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #303433;
 }
 
 body {
     min-height: 100vh;
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    background-image: url(/static/images/addict.jpg);
-    background-size: cover; 
+    position: relative;
+    z-index: 1;
+    overflow: hidden;   
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background-image: url(/static/images/addict.webp);
+    background-size: cover;
     background-position: center;
+    filter: blur(5px); 
+    z-index: -1;
 }
 
 .navbar {
@@ -78,22 +90,17 @@ body {
 }
 
 .login-form {
-    width: 100%;
+    width: 70%;
     display: flex;
     flex-direction: column;
-}
-
-.login-form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+    align-items: center;
 }
 
 .form-control {
     position: relative;
     margin-bottom: 24px;
+    
 }
-
 input, button {
     border: none;
     outline: none;
@@ -116,13 +123,14 @@ input:focus ~ i {
 
 button.submit {
     color: aliceblue;
-    padding: 14px 64px;
+    padding: 14px 70px;
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: bold;
     background-image: linear-gradient(to right, #8b33c5, #15a0e1);
     cursor: pointer;
     transition: opacity 0.5s;
+    margin-left: 100px;
 }
 
 button.submit:hover {
@@ -131,6 +139,7 @@ button.submit:hover {
 
 .form-text {
     margin-top: 5%;
+    font-size: 20px;
     text-align: left;
 }
 

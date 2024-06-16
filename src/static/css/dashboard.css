@@ -1,12 +1,32 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     min-height: 100vh;
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    background-image: url(/static/images/addict.jpg);
-    background-size: cover; 
+    position: relative;
+    z-index: 1;
+    overflow: hidden;   
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background-image: url(/static/images/addict.webp);
+    background-size: cover;
     background-position: center;
+    filter: blur(5px); 
+    z-index: -1;
 }
 
 .navbar {
@@ -33,33 +53,72 @@ body {
 }
 
 .content {
-    margin-top: 60px;
+    margin-top: 80px; 
     padding: 20px;
     text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.motivational-text {
+    max-width: 800px; 
+    margin: 20px 0;
+    padding: 20px;
+    background-color: rgba(52, 51, 51, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+    color: white;
 }
 
 .stats-container {
     display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-    margin-bottom: 40px;
+    justify-content: center;
+    gap: 20px; 
+    flex-wrap: wrap; 
+    width: 80%;
 }
 
 .stat-box {
-    background-color: #ffffff;
+    background-color: rgba(52, 51, 51, 0.8);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    width: 20%;
     box-sizing: border-box;
     border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+    color: white;
+    text-align: center;
+    width: 250px; 
 }
 
-.motivational-text {
-    max-width: 900px;
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    box-sizing: border-box;
-    border-radius: 8px;
+.stat-box:hover, .motivational-text:hover {
+    transform: scale(1.05);
+}
+
+.stat-box img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 10px;
+}
+
+.stat-box h2 {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.stat-box p {
+    color: white;
+}
+
+.motivational-text h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.motivational-text p {
+    color: white;
 }
