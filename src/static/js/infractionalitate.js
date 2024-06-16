@@ -10,19 +10,28 @@ document.getElementById('categories').addEventListener('change', function(event)
     const subcategoriesInfractiunileGroup = document.getElementById('subcategories-infractiunile-group');
     const subcategoriesCondamnateGroup = document.getElementById('subcategories-condamnate-group');
     const subcategoriesUrgenteGroup = document.getElementById('subcategories-urgente-group');
+    const subcategoriesConfiscariGroup = document.getElementById('subcategories-confiscari-group');
 
     if (event.target.value === 'infractiunile') {
         subcategoriesInfractiunileGroup.style.display = 'block';
         subcategoriesCondamnateGroup.style.display = 'none';
         subcategoriesUrgenteGroup.style.display = 'none';
+        subcategoriesConfiscariGroup.style.display = 'none';
     } else if (event.target.value === 'urgente') {
         subcategoriesInfractiunileGroup.style.display = 'none';
         subcategoriesCondamnateGroup.style.display = 'none';
         subcategoriesUrgenteGroup.style.display = 'block';
+        subcategoriesConfiscariGroup.style.display = 'none';
+    } else if (event.target.value === 'confiscari') {
+        subcategoriesInfractiunileGroup.style.display = 'none';
+        subcategoriesCondamnateGroup.style.display = 'none';
+        subcategoriesUrgenteGroup.style.display = 'none';
+        subcategoriesConfiscariGroup.style.display = 'block';
     } else {
         subcategoriesInfractiunileGroup.style.display = 'none';
         subcategoriesCondamnateGroup.style.display = 'none';
         subcategoriesUrgenteGroup.style.display = 'none';
+        subcategoriesConfiscariGroup.style.display = 'none';
     }
 });
 
@@ -39,13 +48,15 @@ document.getElementById('statsForm').addEventListener('submit', async function(e
     event.preventDefault();
     const year = document.getElementById('years').value;
     const category = document.getElementById('categories').value;
-    const subcategory = category === 'infractiunile' ? document.getElementById('subcategories-infractiunile').value : document.getElementById('subcategories-urgente').value;
+    const subcategory = category === 'infractiunile' ? document.getElementById('subcategories-infractiunile').value :
+                        category === 'urgente' ? document.getElementById('subcategories-urgente').value :
+                        document.getElementById('subcategories-confiscari').value;
     const subcategoryCondamnate = document.getElementById('subcategories-condamnate').value;
     const representation = document.getElementById('representation').value;
     const errorMessage = document.getElementById('errorMessage');
     const canvas = document.getElementById('myChart');
 
-    if ((year === "2020" || year === "2021") && category === "infractiunile") {
+    if ((year === "2020" || year === "2021") && (category === "infractiunile" || category === "confiscari")) {
         canvas.style.display = 'none';
         errorMessage.style.display = 'block';
         return;
@@ -57,9 +68,20 @@ document.getElementById('statsForm').addEventListener('submit', async function(e
     try {
         let fileName;
         if (year === "2023") {
-            fileName = category === "infractiunile" ? 'infractionalitate2023.xlsx' : 'urgente_medicale2023.xlsx';
+            fileName = category === "infractiunile" ? 'infractionalitate2023.xlsx' :
+                       category === "confiscari" ? 'confiscari2023.xlsx' :
+                       'urgente_medicale2023.xlsx';
         } else if (year === "2022") {
-            fileName = category === "infractiunile" ? 'infractionalitate2022.xlsx' : 'urgente_medicale2022.xlsx';
+            fileName = category === "infractiunile" ? 'infractionalitate2022.xlsx' :
+                       category === "confiscari" ? 'confiscari2022.xlsx' :
+                       'urgente_medicale2022.xlsx';
+        } else if (year === "2021" && category === "urgente") {
+            fileName = 'urgente_medicale2021.xlsx';
+        } else if (year === "2020" && category === "urgente") {
+            fileName = 'urgente_medicale2020.xlsx';
+        } else {
+            console.error("Invalid year or category");
+            return;
         }
         console.log(`Loading file: ${fileName}`);
         const response = await fetch(`/static/${fileName}`);
@@ -163,7 +185,31 @@ document.getElementById('statsForm').addEventListener('submit', async function(e
                 console.error("Invalid subcategory for 'urgente'");
                 return;
             }
-        } else {
+        }  else if (category === "confiscari") {
+            const rowStart = 3;
+            const rowEnd = 37; 
+            const subcategoryIndex = {
+                "grame": 1,
+                "comprimate": 2,
+                "doze": 3,
+                "mililitri": 4,
+                "total": 5
+            }[subcategory];
+        
+            if (subcategoryIndex !== undefined) {
+                jsonData.slice(rowStart, rowEnd).forEach(row => {
+                    if (row[0] && row[subcategoryIndex] !== undefined) {
+                        labels.push(row[0]);
+                        dataValues.push(row[subcategoryIndex]);
+                    }
+                });
+            } else {
+                console.error("Invalid subcategory for 'confiscari'");
+                return;
+            }
+        }
+
+         else {
             console.error("Invalid category");
             return;
         }
@@ -191,12 +237,21 @@ document.getElementById('statsForm').addEventListener('submit', async function(e
             chartType = 'pie';
         }
 
+        let chartLabel;
+        if (category === "infractiunile") {
+            chartLabel = 'Infracționalitatea la regimul drogurilor';
+        } else if (category === "urgente") {
+            chartLabel = 'Urgențe medicale';
+        } else if (category === "confiscari") {
+            chartLabel = subcategory.charAt(0).toUpperCase() + subcategory.slice(1);
+        }
+
         chartInstance = new Chart(ctx, {
             type: chartType,
             data: {
                 labels: labels,
                 datasets: [{
-                    label: category === "infractiunile" ? 'Infracționalitatea la regimul drogurilor' : 'Urgențe medicale',
+                    label: chartLabel,
                     data: dataValues,
                     borderColor: 'rgba(75, 192, 192, 1)',
                     backgroundColor: representation === 'pie' ? [
