@@ -47,6 +47,12 @@ body{
 .text-box h1{
     font-size: 65px;
 }
+.box-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
 .box, .box-1 {
     width: 450px;
     background: rgba(0, 0, 0, 0.4);
@@ -128,6 +134,9 @@ body{
     .nav-links ul li {
         display: block; 
         text-align: center; 
+    }
+    .box-container {
+        flex-direction: column;
     }
 }
 
