@@ -38,6 +38,7 @@ body::before {
     z-index: 1000;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .navbar a {
@@ -121,4 +122,34 @@ body::before {
 
 .motivational-text p {
     color: white;
+}
+@media (max-width: 768px) {
+    .motivational-text {
+        width: 90%;
+    }
+
+    .stats-container {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .stat-box {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar a {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    .motivational-text {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .stat-box {
+        width: 80%;
+    }
 }

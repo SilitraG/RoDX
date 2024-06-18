@@ -44,6 +44,7 @@ body::before {
     z-index: 1000;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .navbar a {

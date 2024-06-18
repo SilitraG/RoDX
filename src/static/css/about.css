@@ -27,12 +27,14 @@ body{
     z-index: 1000;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .navbar a {
     color: white;
     text-align: center;
     padding: 14px 20px;
     text-decoration: none;
+   
 }
 .navbar a:hover {
     background-color: #ddd;
@@ -123,25 +125,27 @@ body{
     font-family: 'Courier New', Courier, monospace;
 }
 
-@media screen and (max-width: 768px) {
-    .header {
-        min-height: auto; 
-        background-size: contain;
+@media screen and (max-width: 480px) {
+    .navbar a {
+        padding: 10px;
+        font-size: 0.9em;
     }
-    .nav-links {
-        display: none;
-    }
-    .nav-links ul li {
-        display: block; 
-        text-align: center; 
-    }
-    .box-container {
-        flex-direction: column;
-    }
-}
 
-@media screen and (min-width: 1200px) {
-    .header {
-        background-size: cover; 
+    .text-box h1, .text h1 {
+        font-size: 30px;
+    }
+
+    .box, .box-1 {
+        padding: 20px;
+    }
+
+    .box-img, .box-1-img {
+        width: 120px;
+        height: 160px;
+    }
+
+    .informatii {
+        padding: 20px;
+        font-size: 16px;
     }
 }

@@ -17,6 +17,7 @@ body {
     z-index: 1000;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .navbar a {
@@ -24,6 +25,8 @@ body {
     text-align: center;
     padding: 14px 20px;
     text-decoration: none;
+
+    
 }
 
 .navbar a:hover {
@@ -35,6 +38,7 @@ body {
     margin-top: 80px;
     padding: 20px;
     width: 60%;
+    max-width: 1200px;
     text-align: center;
     background-color: #f9f9f9;
     border-radius: 10px;
@@ -53,6 +57,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 200px;
 }
 
 label {
@@ -114,4 +119,39 @@ canvas {
     text-align: left;
     background-color: #3c423c;
     color: white;
+}
+
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+    }
+
+    .filter-group {
+        width: 100%;
+        max-width: none;
+    }
+
+    .content {
+        width: 90%;
+    }
+
+    .navbar a {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .content {
+        width: 95%;
+        padding: 10px;
+    }
+
+    select, button {
+        font-size: 14px;
+        padding: 8px;
+    }
 }

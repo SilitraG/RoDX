@@ -47,7 +47,7 @@
               <li><a href="#login">3.1.3 Pagina de autentificare </a></li>
               <li><a href="#signup">3.1.4 Pagina de înregistrare </a></li>
               <li><a href="#home">3.1.5 Pagina de acasă </a></li>
-              <li><a href="#statistici">3.1.5 Pagina de statistici</a></li>
+              <li><a href="#statistici">3.1.6 Pagina de statistici</a></li>
               <li><a href="#campanii">3.1.7 Pagina de campanii</a></li>
               <li><a href="#about">3.1.8 Pagina About </a></li>
               <li><a href="#profil">3.1.9 Pagina de Profil </a></li>
@@ -55,6 +55,42 @@
           </li>
           <li><a href="#hardware-interface">3.2 Interfața Hardware</a>
           <li><a href="#software-interface">3.3 Interfața Software</a>
+            <li><a href="#hardware-interface">3.2 Interfața Hardware </a></li>
+          <li><a href="#software-interface">3.3 Interfața Software</a></li>
+        </ul>
+      </li>
+      <li><a href="#system-features">4. Caracteristici ale sistemului</a>
+        <ul>
+          <li><a href="#management">4.1 Gestionarea contului </a>
+            <ul>
+              <li><a href="#management-1">4.1.1 Descriere și generalități </a></li>
+              <li><a href="#management-2">4.1.2 Actualizarea informațiilor</a></li>
+              <li><a href="#management-3">4.1.3 Condiții de funcționare</a></li>
+            </ul>
+          </li>
+        
+          <li><a href="#logout">4.2 Secțiunea Logout</a>
+            <ul>
+              <li><a href="#logout-1">4.2.1 Descriere și generalități</a></li>
+              <li><a href="#logout-2">4.2.2 Actualizarea informațiilor</a></li>
+              <li><a href="#logout-3">4.2.3 Condiții de funcționare</a></li>
+            </ul>
+          </li>
+          <li><a href="#filtrare">4.3 Filtrarea și exportarea datelor</a>
+            <ul>
+              <li><a href="#filtrare-1">4.3.1 Descriere și generalități</a></li>
+              <li><a href="#filtrare-2">4.3.2 Condiții de funcționare</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#non-functional">5.Funcționalități pentru protecție și securitate</a>
+        <ul>
+          <li><a href="#security">5.1 Securizarea datelor</a></li>
+          <li><a href="#software-attributes">5.2 Calitățile Software </a></li>
+        </ul>
+      </li>
+    </ul>
       
     <div role="contentinfo">
       <section id="authors" typeof="sa:AuthorsList">
@@ -312,7 +348,7 @@
             <li style="list-style: none">
               <ul>
                 <li>Pagina aceasta are rolul de oferii informații despre autorii site-ului. </li>
-               <br> <img src="img/about.jpg" alt="overview" width=800 >
+               <br> <img src="img/aboutus.jpg" alt="overview" width=800 >
               </ul>
 
             </li>
@@ -340,6 +376,102 @@
             Cerințele minime de software includ un browser funcțional, compatibil cu HTML5 și cu JavaScript.
           <h5>MongoDBC</h5>
           Aceasta reprezinta baza de date în care stocam informații despre fiecare utilizator.
-        </section>     
+        </section>   
+        <section id="system-features">
+          <h3>4. Caracteristici ale sistemului</h3>
+          <section id="management">
+            <h4>4.1 Gestionarea contului</h4>
+
+            <h5 id="management-1">4.1.1 Descriere și generalități</h5>
+            Un utilizator se poate înregistra completandu-și numele, numele de utilizator, un email și o parolă.Acesta se poate
+            autentifica având nevoie doar de email și de o parolă.Utilizatorul are posibilitatea în timp ce este
+            autentificat să-și modifice credențialele de la cont dacă dorește acest lucru.
+            <h5 id="management-2">4.1.2 Actualizarea informațiilor</h5>
+            <ul>
+              <li>
+                În momentul în care un utilizator nou este creat, credențialele acestuia sunt introduse în baza de
+                date.De asemenea, când utilizatorul decide să-și modifice credențialele, noile valori sunt și ele
+                actualizate în baza de date.
+              </li>
+            </ul>
+            <h5 id="management-3">4.1.3 Condiții de funcționare</h5>
+            <ul>
+              <li>
+                Pentru a-și modifica credențialele utilizatorul trebuie să fie autentificat.
+              </li>
+              <li>
+                Pentru a se autentifica utilizatorul are nevoie de un cont care este înregistrat în baza de date.
+              </li>
+            </ul> 
+            <section id="logout">
+              <h4>4.2 Secțiunea de Logout</h4>
+              <h5 id="logout-1">4.2.1 Descriere și generalități</h5>
+              Secțiunea de <b>Logout</b> are rolul de a deconecta utilizatorul de pe cont, și îl redirecționează către
+                pagina de autentificare, eliminând tokenul din local storage. 
+  
+              <h5 id="logout-2">4.2.2 Actualizare informațiilor</h5>
+              <ul>
+                <li>
+                  Tokenul de autentificare este scos din local storage.
+                </li>
+              </ul>
+              <h5 id="logout-3">4.2.3 Condiții de funcționare</h5>
+            <ul>
+              <li>
+                Utilizatorul trebuie să fie autentificat.
+              </li>
+
+            </ul>
+            </section>
+            <section id="filtrare">
+              <h4>4.3 Filtrarea și exportarea datelor.</h4>
+              <h5 id="filtrare-1">4.3.1 Descriere și generalități</h5>
+              În momentul în care un utilizator selectează un An, acestuia îi sunt generate 3 categorii de filtre,
+              Infracțiuni, Confiscări și Urgențe medicale.
+              După ce una distre aceste 3 categorii este selectată ne sunt generate mai multe câmpuri care reprezintă sub-categorii a
+              categoriei principale, pe care utilizatorul le poate completa după nevoile sale
+              După ce utilizatorul a completat toate campurile, acesta are posibilitatea de a alege din 3 metode de
+              reprezentare grafică BarPlot, Grafic și Pie.
+              La final după apasarea butonului Caută, pe ecran sunt afișate următoarele componente, diagrama care conține
+              informații bazate pe filtrele selectate de utilizator, și  butoanele de Export
+              care au rolul de exporta diagramele în 4 formate, PNG, SVG, CSV si PDF.
+              Aceata este o funcționalitate cu o prioritate ridicată a aplicației.
+              </ul>
+  
+              <h5 id="filtrare-2">4.3.2 Condiții de funcționare</h5>
+              <ul>
+                <li>
+                  Pentru a selecta un filtru preferat utilizatorul trebuie să fie autentificat.
+                </li>
+              </ul>
+            </section>
+            <section id="security">
+              <h4>5. Funcționalități pentru protecție și securitate</h4>
+              <h4>5.1 Securizarea datelor</h4>
+              <p>
+                Conturile utilizatorilor sunt protejate printr-un sistem de autentificare care utilizează criptarea
+                parolelor și tokenurile de acces, în scopul menținerii confidențialității și securității datelor lor.
+  
+                Aceasta măsură asigură că informațiile utilizatorilor sunt protejate și că aplicația rămâne securizată
+                împotriva amenințărilor potențiale.
+              </p>
+            </section>
+            <section id="software-attributes">
+              <h4>5.2 Calitățile Software</h4>
+              <ul>
+  
+                <li>Adaptabilitate</li>
+                <li>Ușurință în utilizare</li>
+                <li>Fiabilitate</li>
+                <li>Flexibilitate</li>
+                <li>Maintenabilitate</li>
+              </ul>
+            </section>
+  
+          </section>
+        </section>
+      </section>
+    </article>
+  
 </body>
 </html> 

@@ -266,6 +266,7 @@ document.getElementById('statsForm').addEventListener('submit', async function(e
                     ] : 'rgba(75, 192, 192, 0.2)',
                 }]
             }
+            
         });
     } catch (error) {
         console.error('There was an error fetching or processing the file:', error);
@@ -283,15 +284,29 @@ document.getElementById('exportPNG').addEventListener('click', function() {
 
 document.getElementById('exportSVG').addEventListener('click', function() {
     const canvas = document.getElementById('myChart');
-    const svgHtml = canvas.parentElement;
-    const svgData = new XMLSerializer().serializeToString(svgHtml);
-    const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
+    const ctx = canvas.getContext('2d');
+
+    const svgContext = new C2S(canvas.width, canvas.height);
+
+    chartInstance.config.options.responsive = false; 
+    chartInstance.config.options.animation = false; 
+    const chartConfig = chartInstance.config;
+    chartConfig.data.datasets[0].backgroundColor = 'transparent'; 
+    new Chart(svgContext, chartConfig);
+    const svgData = svgContext.getSerializedSvg(true); 
+
+    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
     const svgUrl = URL.createObjectURL(svgBlob);
+
     const link = document.createElement('a');
     link.href = svgUrl;
     link.download = 'chart.svg';
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
 });
+
+
 document.getElementById('exportCSV').addEventListener('click', function() {
     const labels = chartInstance.data.labels;
     const data = chartInstance.data.datasets[0].data;

@@ -8,13 +8,13 @@
     <title>Statistici</title>
     <style>
         .small-chart {
-            width: 300px;
-            height: 300px;
+            width: 100px;
+            height: 100px;
         }
 
         .large-chart {
-            width: 800px;
-            height: 600px;
+            width: 500px;
+            height: 300px;
         }
         .error-message {
             display: none;
@@ -26,8 +26,9 @@
         .export-buttons button {
             margin-right: 5px;
         }
+        
     </style>
-</head>
+ </head>
 <body>
     <div class="navbar">
         <a href="/dashboard">Dashboard</a>
@@ -112,15 +113,14 @@
                 <button id="exportPDF">Export PDF</button>
             </div>
             <canvas id="myChart" class="large-chart"></canvas>
-            <div id="errorMessage" class="error-message">Categoria "Infracționalitatea la regimul drogurilor" nu este disponibilă pentru anul selectat.</div>
+            <div id="errorMessage" class="error-message">Categoria nu este disponibilă pentru anul selectat.</div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas2svg/1.0.18/canvas2svg.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    \<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="/static/js/canvas2svg.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" async></script>
+    <script src="/static/js/FileSaver.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-    
-    <script src="/static/js/filter.js"></script>
+    <script src="/static/js/filterController.min.js" defer></script>
 </body>
 </html>
